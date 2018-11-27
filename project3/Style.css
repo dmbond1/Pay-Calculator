@@ -1,0 +1,14 @@
+﻿body {
+    background-color: lightgrey;
+    font-family: Arial;
+}
+
+#divDisplay {
+    background-color: lightblue;
+    padding: 30px;
+    font-family: Arial;
+    font-size: 18px;
+    margin-right: 300px;
+    margin-left: 300px;
+    margin-top: 50px;
+}

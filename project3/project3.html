@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Pay Calculator</title>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+
+    <script>
+        function calculatePay() {
+
+            //1. Declare Variables
+            var numberOfHoursWorked,
+                overtimeHours,
+                employmentCategory,
+                basePayAmount,
+                overtimePayRate,
+                overtimeAmount,
+                totalPayAmount,
+                userSelectedIndex,
+                displayString1,
+                displayString2,
+                displayString3,
+                displayString4,
+                displayString5;
+
+            //2. Get Values for Variables
+            numberOfHoursWorked = parseFloat(document.getElementById("txtHours").value);
+            employmentCategory = document.getElementById("selJob").value;
+
+            console.log("numberOfHoursWorked = " + numberOfHoursWorked);
+            console.log("employmentCategory = " + employmentCategory);
+
+            userSelectedIndex = document.getElementById("selJob").selectedIndex;
+            console.log("userSelectedIndex = " + userSelectedIndex);
+
+
+            //Input Validation
+
+            //Check for missing number of hours
+            if (numberOfHoursWorked === "") {
+                alert("Please include a number of hours worked!");
+                document.getElementById("txtHours").focus();
+                return;
+            }
+
+            //Check for non-numerical number of hours
+            if (isNaN(numberOfHoursWorked)) {
+                alert("Your number of hours must be an actual number!");
+                document.getElementById("txtHours").focus();
+                return;
+            }
+            
+            //Check if a negative number was entered
+            if (numberOfHoursWorked < 0) {
+                alert("You can't work a negative number of hours!");
+                document.getElementById("txtHours").focus();
+                return;
+            }
+
+            //3. Do Calculations
+
+
+            //Manager
+            if (userSelectedIndex == 1 && numberOfHoursWorked <= 40) {
+                overtimeHours = 0;
+                basePayAmount = 25 * numberOfHoursWorked;
+                overtimePayRate = 0;
+                overtimeAmount = 0;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+
+            //Manager with overtime
+            if (userSelectedIndex == 1 && numberOfHoursWorked > 40){
+                overtimeHours = numberOfHoursWorked - 40
+                numberOfHoursWorked = 40;
+                basePayAmount = 25 * numberOfHoursWorked;
+                overtimePayRate = 1.5 * 25;
+                overtimeAmount =overtimePayRate * overtimeHours;;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+            
+
+            //Sales Rep with no overtime
+            if (userSelectedIndex == 2  && numberOfHoursWorked <= 40) {
+                overtimeHours = 0;
+                basePayAmount = 20 * numberOfHoursWorked;
+                overtimePayRate = 0;
+                overtimeAmount = 0;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+
+        //Sales Rep with overtime
+            if (userSelectedIndex == 2 && numberOfHoursWorked > 40) {  
+                overtimeHours = numberOfHoursWorked - 40;
+                numberOfHoursWorked = 40;
+                basePayAmount = 20 * numberOfHoursWorked;
+                overtimePayRate = 1.5 * 20;
+                overtimeAmount = overtimePayRate * overtimeHours;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+
+            //Staff with no overtime
+            if (userSelectedIndex == 3 && numberOfHoursWorked <= 40) {
+                overtimeHours = 0;
+                basePayAmount = 15 * numberOfHoursWorked;
+                overtimePayRate = 0;
+                overtimeAmount = 0;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+
+            //Staff with overtime
+            if (userSelectedIndex == 3 && numberOfHoursWorked > 40) {
+                overtimeHours = numberOfHoursWorked - 40;
+                numberOfHoursWorked = 40;
+                basePayAmount = 15 * numberOfHoursWorked;
+                overtimePayRate = 1.5 * 15;
+                overtimeAmount = overtimePayRate * overtimeHours;
+                totalPayAmount = basePayAmount + overtimeAmount;
+
+                console.log("overtimeHours = " + overtimeHours);
+                console.log("basePayAmount = " + basePayAmount);
+                console.log("overtimePayRate = " + overtimePayRate);
+                console.log("overtimeAmount = " + overtimeAmount);
+                console.log("totalPayAmount = " + totalPayAmount);
+            }
+
+            //4. Display Results
+            displayString1 = numberOfHoursWorked;
+            displayString2 = overtimeHours;
+            displayString3 = basePayAmount;
+            displayString4 = overtimeAmount;
+            displayString5 = totalPayAmount;
+
+            document.getElementById("baseHours").innerHTML = displayString1;
+            document.getElementById("overtimeHours").innerHTML = displayString2;
+            document.getElementById("basePayAmount").innerHTML = displayString3;
+            document.getElementById("overtimePay").innerHTML = displayString4;
+            document.getElementById("totalPay").innerHTML = displayString5;
+
+        }
+    </script>
+
+</head>
+<body>
+    <h1 align="center"><b>Pay Calculator</b></h1>
+
+    
+
+    <div id="divDisplay">
+        <table cellpadding="5px">
+            <tr>
+                <td>
+                    Number of Hours Worked
+                </td>
+                <td>
+                    <input type="text" id="txtHours" size="20" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Employment Category
+                </td>
+                <td>
+                    <select id="selJob">
+                        <option selected value="">Select Position...</option>
+                        <option value="MGR">Manager</option>
+                        <option value="SR">Sales Rep</option>
+                        <option value="STF">Staff</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Calculate Pay" id="butCalculate" onclick="calculatePay()"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Hours Eligible for Base Pay
+                </td>
+                <td id="baseHours"></td>
+            </tr>
+            <tr>
+                <td>
+                    Hours Eligible for Overtime Pay
+                </td>
+                <td id="overtimeHours"></td>
+            </tr>
+            <tr>
+                <td>
+                    Base Pay Amount
+                </td>
+                <td id="basePayAmount"></td>
+            </tr>
+            <tr>
+                <td>
+                    Overtime Pay Amount
+                </td>
+                <td id="overtimePay"></td>
+            </tr>
+            <tr>
+                <td>
+                    Total Pay Amount
+                </td>
+                <td id="totalPay"></td>
+            </tr>
+        </table>
+        </div>
+
+    
+</body>
+</html>
